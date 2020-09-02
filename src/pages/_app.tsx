@@ -1,11 +1,51 @@
+import App from 'next/app';
 import React from 'react';
-import { AppProps } from 'next/app';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import { DefaultSeo } from 'next-seo';
 import 'semantic-ui-css/semantic.min.css';
 
 import '../styles/globals.css';
 
-const App = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />;
+const DEFAULT_SEO = {
+  title: 'muku.',
+  description: "muku's blog",
+  openGraph: {
+    type: 'website',
+    locale: 'ja',
+    title: 'muku.',
+    description: "muku's blog",
+    site_name: 'muku.',
+  },
 };
 
-export default App;
+export default class CustomApp extends App {
+  componentDidMount() {
+    Router.events.on('routeChangeComplete', () => {
+      NProgress.start();
+    });
+
+    Router.events.on('routeChangeComplete', () => {
+      NProgress.done();
+    });
+    Router.events.on('routeChangeError', () => {
+      NProgress.done();
+    });
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.log(error);
+    super.componentDidCatch(error, errorInfo);
+  }
+
+  render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <>
+        <DefaultSeo {...DEFAULT_SEO} />
+        <Component {...pageProps} />
+      </>
+    );
+  }
+}
