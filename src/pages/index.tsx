@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { Button } from 'semantic-ui-react';
 import Head from 'next/head';
+
+import { Layout } from '../components/layout';
 
 const Home: FC = () => {
   return (
@@ -9,9 +10,7 @@ const Home: FC = () => {
         <title>muku.</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <Button>muku.</Button>
-      </main>
+      <Layout></Layout>
     </div>
   );
 };
