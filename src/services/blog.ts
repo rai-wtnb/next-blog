@@ -7,8 +7,8 @@ export class BlogApi {
 
   constructor() {
     this.client = createClient({
-      space: '5t4gpao25b8x',
-      accessToken: 'F9BzMNpQ2pqk12YXbFuK-o3sHl4usfXlBB80Gxdpigk',
+      space: process.env.CONTENTFUL_SPACE_ID,
+      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
     });
   }
 
@@ -21,7 +21,7 @@ export class BlogApi {
       image: rawPost.image,
       slug: rawPost.slug,
       body: rawPost.body,
-      publishedDate: moment(rawPost.publishedDate).format('DD MMM YYYY'),
+      publishDate: moment(rawPost.publishDate).format('DD MMM YYYY'),
 
       tags: rawPost.tags,
       metaTitle: rawPost.metaTitle,
@@ -33,18 +33,26 @@ export class BlogApi {
   };
 
   async fetchBlogEntries(): Promise<Array<BlogPost>> {
-    return await this.client.getEntries({}).then((entries) => {
-      if (entries && entries.items && entries.items.length > 0) {
-        const blogPosts = entries.items.map((entry) => this.convertPost(entry));
-        return blogPosts;
-      }
-      return [];
-    });
+    return await this.client
+      .getEntries({
+        content_type: 'blogPost',
+        order: '-fields.publishDate',
+      })
+      .then((entries) => {
+        if (entries && entries.items && entries.items.length > 0) {
+          const blogPosts = entries.items.map((entry) =>
+            this.convertPost(entry)
+          );
+          return blogPosts;
+        }
+        return [];
+      });
   }
 
   async fetchBlogById(slug: string): Promise<BlogPost> {
     return await this.client
       .getEntries({
+        content_type: 'blogPost',
         'fields.slug[in]': slug,
       })
       .then((entries) => {

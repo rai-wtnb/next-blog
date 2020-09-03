@@ -5,7 +5,7 @@ export type BlogPost = {
   image: any;
   slug: string;
   body: string;
-  publishedDate: string;
+  publishDate: string;
 
   tags: Array<string>;
   metaTitle: string;

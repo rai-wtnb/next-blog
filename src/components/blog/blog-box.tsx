@@ -1,46 +1,57 @@
 import React from 'react';
-
+import { Segment, Image, Grid } from 'semantic-ui-react';
+import styled from '@emotion/styled';
 import Link from 'next/link';
 
-const defaultProps = {
-  author: '',
-  description: '',
-  publishedDate: '',
-  readingTime: '',
-  className: '',
-};
+// css
+const PostTitle = styled.p`
+  font-size: 20px;
+`;
+const Article = styled.article`
+  padding-bottom: 10px;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+// css
 
 type BlogBoxProps = {
+  title: string;
+  description: string;
   id: string;
   slug: string;
-  imageUrl?: string;
-  title: string;
+  image: any;
+  publishDate: any;
   tags?: Array<string>;
-} & typeof defaultProps;
+};
 
 export const BlogBox = (props: BlogBoxProps) => {
   return (
-    <div>
-      <article>
-        <div>
-          {props.tags && props.tags.length > 0 && <span>{props.tags[0]}</span>}
-
-          <Link href='/blog/[slug]' as={`/blog/${props.slug}`} passHref>
-            <a>
-              <h3>{props.title}</h3>
-            </a>
-          </Link>
-          <span>
-            by <a href='#'>{props.author}</a>
-          </span>
-        </div>
-
-        <div>
-          <div>{props.description}</div>
-        </div>
-      </article>
-    </div>
+    <Article>
+      <Segment>
+        {/* {props.tags && props.tags.length > 0 && (
+              <span>{props.tags[0]}</span>
+            )} */}
+        <Link href='/blog/[slug]' as={`/blog/${props.slug}`} passHref>
+          <a>
+            <Grid>
+              <Grid.Column width={4}>
+                <Image
+                  src={props.image.fields.file.url}
+                  size='medium'
+                  rounded
+                />
+              </Grid.Column>
+              <Grid.Column width={9}>
+                <PostTitle>{props.title}</PostTitle>
+                <p>{props.description}</p>
+                <p>{props.publishDate}</p>
+              </Grid.Column>
+              <Grid.Column width={1}>category</Grid.Column>
+            </Grid>
+          </a>
+        </Link>
+      </Segment>
+    </Article>
   );
 };
-
-BlogBox.defaultProps = defaultProps;
