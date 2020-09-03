@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Image, Segment } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 import { Layout } from '../../components/layout';
 import { BlogDetail } from '../../components/blog';
@@ -43,13 +43,7 @@ export default class BlogDetailPage extends React.Component<
         />
         <div>
           <div>
-            {!post && (
-              <Segment>
-                <Loader active />
-
-                <Image src='/images/wireframe/short-paragraph.png' />
-              </Segment>
-            )}
+            {!post && <Loader active />}
             {post && <BlogDetail post={post} />}
           </div>
         </div>
