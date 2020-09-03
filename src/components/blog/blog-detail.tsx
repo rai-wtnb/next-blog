@@ -1,6 +1,8 @@
 import React from 'react';
-import { BlogPost } from '../../services';
 import ReactMarkdown from 'react-markdown';
+
+import { BlogPost } from '../../services';
+import { H1 } from '../../styles/globalStyle';
 
 type BlogDetailProps = {
   post: BlogPost;
@@ -8,16 +10,15 @@ type BlogDetailProps = {
 
 export const BlogDetail = (props: BlogDetailProps) => {
   const { post } = props;
-  const mainTag = post.tags.length > 0 ? post.tags[0] : '';
+  // const mainTag = post.tags.length > 0 ? post.tags[0] : '';
   return (
     <article>
       <header>
-        <h1>{post.title}</h1>
-        <div>{`${post.publishedDate} / ${mainTag}`}</div>
+        <H1>{post.title}</H1>
+        <div>{post.publishDate}</div>
+        {/* <div>{`${post.publishedDate} / ${mainTag}`}</div> */}
       </header>
-      <section style={{ overflowY: 'inherit', marginBottom: '2em' }}>
-        <ReactMarkdown source={post.body} />
-      </section>
+      <ReactMarkdown source={post.body} />
     </article>
   );
 };

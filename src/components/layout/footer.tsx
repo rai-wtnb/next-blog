@@ -1,22 +1,26 @@
+import styled from '@emotion/styled';
+import { Icon } from 'semantic-ui-react';
+
+// css
+const GridFooter = styled.footer`
+  grid-area: footer;
+`;
+const FooterRight = styled.div`
+  font-size: 12.8px;
+  float: right;
+`;
+// css
+
 export const Footer = () => {
   return (
-    <footer>
-      <div>
+    <GridFooter>
+      <FooterRight>
         <span>
           &#169;
-          {`${new Date().getFullYear()} Company Inc. All Rights Reserved`}
+          {`${new Date().getFullYear()} muku.`}
         </span>
-        <div className='float-right'>
-          <a
-            href='https://github.com/rai-wtnb'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Github
-          </a>
-        </div>
-      </div>
-    </footer>
+      </FooterRight>
+    </GridFooter>
   );
 };
 
