@@ -1,7 +1,7 @@
 import React from 'react';
-import { Segment, Image, Grid } from 'semantic-ui-react';
-import styled from '@emotion/styled';
 import Link from 'next/link';
+import { Segment, Image, Grid, Button } from 'semantic-ui-react';
+import styled from '@emotion/styled';
 
 // css
 const PostTitle = styled.p`
@@ -36,18 +36,16 @@ export const BlogBox = (props: BlogBoxProps) => {
           <a>
             <Grid>
               <Grid.Column width={4}>
-                <Image
-                  src={props.image.fields.file.url}
-                  size='medium'
-                  rounded
-                />
+                <Image src={props.image.fields.file.url} rounded />
               </Grid.Column>
               <Grid.Column width={9}>
                 <PostTitle>{props.title}</PostTitle>
                 <p>{props.description}</p>
                 <p>{props.publishDate}</p>
               </Grid.Column>
-              <Grid.Column width={1}>category</Grid.Column>
+              <Grid.Column width={1}>
+                <Button icon>category</Button>
+              </Grid.Column>
             </Grid>
           </a>
         </Link>
