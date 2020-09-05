@@ -16,6 +16,18 @@ const Entire = styled.div`
     '...... center   ......' 1fr
     '...... footer   ......'
     / 20% 1fr 20%;
+  @media (max-width: 835px) {
+    display: grid;
+    grid-template:
+      '...... ......   ......' 20px
+      '...... header   ......'
+      '...... ......   ......' 40px
+      '...... category ......'
+      '...... ......   ......' 40px
+      '...... center   ......' 1fr
+      '...... footer   ......'
+      / 5% 1fr 5%;
+  }
 `;
 
 const GridCenter = styled.main`

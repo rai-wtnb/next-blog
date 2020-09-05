@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button, Icon, Segment } from 'semantic-ui-react';
 import styled from '@emotion/styled';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 
 // css
 const GridHeader = styled.header`
@@ -14,9 +16,18 @@ const Muku = styled.div`
   display flex;
   align-items: flex-end;
 `;
+const MenuStyle = css({
+  display: 'none',
+  '@media(max-width: 835px)': {
+    display: 'inline-block',
+    float: 'right',
+  },
+});
 // css
 
 export const Header = () => {
+  const [menuToggle, setMenuToggle] = useState<boolean>(false);
+
   return (
     <GridHeader>
       <Muku>
@@ -24,6 +35,11 @@ export const Header = () => {
           <a>muku.</a>
         </Link>
       </Muku>
+      <span css={MenuStyle} onClick={() => setMenuToggle(!menuToggle)}>
+        <Button icon floated='right'>
+          <Icon name='content' />
+        </Button>
+      </span>
       <Link href='/search'>
         <a>
           <Button icon floated='right'>

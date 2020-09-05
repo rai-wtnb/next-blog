@@ -13,6 +13,10 @@ const Article = styled.article`
     opacity: 0.8;
   }
 `;
+const Date = styled.p`
+  font-size: 0.8em;
+  float: right;
+`;
 // css
 
 type BlogBoxProps = {
@@ -32,7 +36,7 @@ export const BlogBox = (props: BlogBoxProps) => {
       <Segment>
         <Link href='/blog/[slug]' as={`/blog/${props.slug}`} passHref>
           <a>
-            <Grid>
+            <Grid stackable>
               <Grid.Column width={5}>
                 {/* TODO -modify- */}
                 {props.image ? (
@@ -45,13 +49,10 @@ export const BlogBox = (props: BlogBoxProps) => {
                   ''
                 )}
               </Grid.Column>
-              <Grid.Column width={8}>
+              <Grid.Column width={11}>
                 <PostTitle>{props.title}</PostTitle>
                 <p>{props.description}</p>
-                <p>{props.publishDate}</p>
-              </Grid.Column>
-              <Grid.Column width={2}>
-                <p>{props.category.fields.name}</p>
+                <Date>{props.publishDate}</Date>
               </Grid.Column>
             </Grid>
           </a>
