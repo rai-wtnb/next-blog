@@ -1,3 +1,12 @@
+export type Category = {
+  fields: {
+    name: string;
+    slug: string;
+    sort: number;
+    definition: string;
+  };
+};
+
 export type BlogPost = {
   id: string;
   title: string;
@@ -6,9 +15,5 @@ export type BlogPost = {
   slug: string;
   body: string;
   publishDate: string;
-
-  tags: Array<string>;
-  metaTitle: string;
-  metaDescription: string;
-  metaImage?: any;
+  category: Category;
 };

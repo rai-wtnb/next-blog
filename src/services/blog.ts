@@ -2,14 +2,23 @@ import { ContentfulClientApi, createClient } from 'contentful';
 import { BlogPost } from './blog.types';
 import moment from 'moment';
 
+const config =
+  process.env.NODE_ENV === 'development'
+    ? {
+        space: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
+        host: 'preview.contentful.com',
+      }
+    : {
+        space: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      };
+
 export class BlogApi {
   client: ContentfulClientApi;
 
   constructor() {
-    this.client = createClient({
-      space: process.env.CONTENTFUL_SPACE_ID,
-      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    });
+    this.client = createClient(config);
   }
 
   convertPost = (rawData): BlogPost => {
@@ -21,14 +30,8 @@ export class BlogApi {
       image: rawPost.image,
       slug: rawPost.slug,
       body: rawPost.body,
-      publishDate: moment(rawPost.publishDate).format('DD MMM YYYY'),
-
-      tags: rawPost.tags,
-      metaTitle: rawPost.metaTitle,
-      metaDescription: rawPost.metaDescription,
-      metaImage: rawPost.metaImage
-        ? rawPost.metaImage.fields.file.url.replace('//', 'http://')
-        : '',
+      publishDate: moment(rawPost.publishDate).format('YYYY.M.D'),
+      category: rawPost.category,
     };
   };
 
@@ -39,6 +42,7 @@ export class BlogApi {
         order: '-fields.publishDate',
       })
       .then((entries) => {
+        console.log(entries);
         if (entries && entries.items && entries.items.length > 0) {
           const blogPosts = entries.items.map((entry) =>
             this.convertPost(entry)
