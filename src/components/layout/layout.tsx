@@ -3,18 +3,16 @@ import styled from '@emotion/styled';
 
 import { ErrorBoundary } from '../error-boundary';
 import { Header, Footer } from './index';
-import CategorySelect from './categorySelect';
+import { H1 } from '../../styles/globalStyle';
 
 const Entire = styled.div`
   display: grid;
   grid-template:
-    '...... ......   ......' 20px
-    '...... header   ......'
-    '...... ......   ......' 80px
-    '...... category ......'
-    '...... ......   ......' 40px
-    '...... center   ......' 1fr
-    '...... footer   ......'
+    '...... ...... ......' 10px
+    '...... header ......'
+    '...... ...... ......' 60px
+    '...... center ......' 1fr
+    '...... footer ......'
     / 20% 1fr 20%;
 `;
 
@@ -26,7 +24,6 @@ export const Layout = (props) => {
   return (
     <Entire>
       <Header />
-      <CategorySelect />
       <ErrorBoundary>
         <GridCenter>{props.children}</GridCenter>
       </ErrorBoundary>
