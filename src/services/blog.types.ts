@@ -1,10 +1,8 @@
 export type Category = {
-  fields: {
-    name: string;
-    slug: string;
-    sort: number;
-    definition: string;
-  };
+  name: string;
+  slug: string;
+  sort: number;
+  definition: string;
 };
 
 export type BlogPost = {
@@ -15,5 +13,5 @@ export type BlogPost = {
   slug: string;
   body: string;
   publishDate: string;
-  category: Category;
+  category: any;
 };

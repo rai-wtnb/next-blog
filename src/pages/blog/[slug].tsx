@@ -1,5 +1,4 @@
 import React from 'react';
-import { Loader } from 'semantic-ui-react';
 
 import { Layout } from '../../components/layout';
 import { BlogDetail } from '../../components/blog';
@@ -24,10 +23,7 @@ export default class BlogDetailPage extends React.Component<
     return (
       <Layout>
         <div>
-          <div>
-            {!post && <Loader active />}
-            {post && <BlogDetail post={post} />}
-          </div>
+          <div>{post && <BlogDetail post={post} />}</div>
         </div>
       </Layout>
     );
