@@ -4,7 +4,6 @@ import { Loader } from 'semantic-ui-react';
 import { Layout } from '../../components/layout';
 import { BlogDetail } from '../../components/blog';
 import { BlogApi, BlogPost } from '../../services';
-import { NextSeo } from 'next-seo';
 
 type BlogDetailPageProps = {
   post: BlogPost;
@@ -24,23 +23,6 @@ export default class BlogDetailPage extends React.Component<
     const { post } = this.props;
     return (
       <Layout>
-        <NextSeo
-          openGraph={{
-            type: 'article',
-            title: post.metaTitle,
-            description: post.metaDescription,
-            images: [
-              {
-                url: post.metaImage,
-                width: 850,
-                height: 650,
-                alt: post.metaTitle,
-              },
-            ],
-          }}
-          title={post.metaTitle}
-          description={post.metaDescription}
-        />
         <div>
           <div>
             {!post && <Loader active />}
