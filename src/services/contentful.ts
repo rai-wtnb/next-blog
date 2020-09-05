@@ -52,7 +52,6 @@ export class BlogApi {
         order: '-fields.publishDate',
       })
       .then((entries) => {
-        console.log(entries);
         if (entries && entries.items && entries.items.length > 0) {
           const blogPosts = entries.items.map((entry) =>
             this.convertPost(entry)
