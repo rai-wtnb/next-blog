@@ -1,5 +1,5 @@
 import { ContentfulClientApi, createClient } from 'contentful';
-import { BlogPost } from './blog.types';
+import { BlogPost, Category } from './blog.types';
 import moment from 'moment';
 
 const config =
@@ -35,14 +35,23 @@ export class BlogApi {
     };
   };
 
-  async fetchBlogEntries(): Promise<Array<BlogPost>> {
+  convertCategory = (rawData): Category => {
+    const rawCategory = rawData.fields;
+    return {
+      name: rawCategory.name,
+      slug: rawCategory.slug,
+      sort: rawCategory.sort,
+      definition: rawCategory.difinition,
+    };
+  };
+
+  async fetchBlogEntries(): Promise<BlogPost[]> {
     return await this.client
       .getEntries({
         content_type: 'blogPost',
         order: '-fields.publishDate',
       })
       .then((entries) => {
-        console.log(entries);
         if (entries && entries.items && entries.items.length > 0) {
           const blogPosts = entries.items.map((entry) =>
             this.convertPost(entry)
@@ -50,6 +59,22 @@ export class BlogApi {
           return blogPosts;
         }
         return [];
+      });
+  }
+
+  async fetchCategories(): Promise<Category[]> {
+    return await this.client
+      .getEntries({
+        content_type: 'category',
+        order: 'fields.sort',
+      })
+      .then((entries) => {
+        if (entries && entries.items && entries.items.length > 0) {
+          const categories = entries.items.map((entry) =>
+            this.convertCategory(entry)
+          );
+          return categories;
+        }
       });
   }
 

@@ -11,14 +11,21 @@ type BlogDetailProps = {
 
 export const BlogDetail = (props: BlogDetailProps) => {
   const { post } = props;
-  // const mainTag = post.tags.length > 0 ? post.tags[0] : '';
   return (
     <article>
       <header>
-        <Image src={post.image.fields.file.url} rounded />
+        {/* TODO -modify- */}
+        {post.image ? (
+          <Image
+            src={post.image.fields.file.url}
+            alt={post.image.fields.title}
+            rounded
+          />
+        ) : (
+          ''
+        )}
         <H1>{post.title}</H1>
         <div>{post.publishDate}</div>
-        {/* <div>{`${post.publishedDate} / ${mainTag}`}</div> */}
       </header>
       <ReactMarkdown source={post.body} />
     </article>

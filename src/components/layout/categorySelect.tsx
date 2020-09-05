@@ -1,8 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Grid, Segment } from 'semantic-ui-react';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+
+import { BlogApi, Category } from '../../services';
 
 // css
 const GridCategory = styled.div`
@@ -17,32 +20,30 @@ const categoryStyle = css({
 });
 //css
 
-type CategoryProps = {};
-
 const CategorySelect: FC = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  useEffect(() => {
+    const api = new BlogApi();
+    const getCategories = async () => {
+      const categories = await api.fetchCategories();
+      setCategories(categories);
+    };
+    getCategories();
+  }, []);
   return (
     <GridCategory>
       <Grid columns='equal'>
-        <Grid.Column>
-          <Segment css={categoryStyle}>
-            <a>エンジニア</a>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment css={categoryStyle}>
-            <a>キャリア</a>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment css={categoryStyle}>
-            <a>買ってよかったもの</a>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment css={categoryStyle}>
-            <a>本</a>
-          </Segment>
-        </Grid.Column>
+        {categories.map((category) => {
+          return (
+            <Grid.Column key={category.slug}>
+              <Link href={'/category/[slug]'} as={`/category/${category.slug}`}>
+                <Segment css={categoryStyle}>
+                  <a>{category.name}</a>
+                </Segment>
+              </Link>
+            </Grid.Column>
+          );
+        })}
       </Grid>
     </GridCategory>
   );

@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { Segment, Image, Grid } from 'semantic-ui-react';
 import styled from '@emotion/styled';
-import { Category } from '../../services';
 
 // css
 const PostTitle = styled.p`
@@ -23,7 +22,7 @@ type BlogBoxProps = {
   slug: string;
   image: any;
   publishDate: any;
-  category: Category;
+  category: any;
   tags?: Array<string>;
 };
 
@@ -35,10 +34,13 @@ export const BlogBox = (props: BlogBoxProps) => {
           <a>
             <Grid>
               <Grid.Column width={5}>
-                {console.log(props)}
                 {/* TODO -modify- */}
                 {props.image ? (
-                  <Image src={props.image.fields.file.url} rounded />
+                  <Image
+                    src={props.image.fields.file.url}
+                    alt={props.image.fields.title}
+                    rounded
+                  />
                 ) : (
                   ''
                 )}
