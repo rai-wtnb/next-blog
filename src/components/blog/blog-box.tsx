@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Segment, Image, Grid } from 'semantic-ui-react';
+import { Segment, Image, Grid, Button } from 'semantic-ui-react';
 import styled from '@emotion/styled';
-import { Category } from '../../services';
 
 // css
 const PostTitle = styled.p`
@@ -23,7 +22,6 @@ type BlogBoxProps = {
   slug: string;
   image: any;
   publishDate: any;
-  category: Category;
   tags?: Array<string>;
 };
 
@@ -31,25 +29,22 @@ export const BlogBox = (props: BlogBoxProps) => {
   return (
     <Article>
       <Segment>
+        {/* {props.tags && props.tags.length > 0 && (
+              <span>{props.tags[0]}</span>
+            )} */}
         <Link href='/blog/[slug]' as={`/blog/${props.slug}`} passHref>
           <a>
             <Grid>
-              <Grid.Column width={5}>
-                {console.log(props)}
-                {/* TODO -modify- */}
-                {props.image ? (
-                  <Image src={props.image.fields.file.url} rounded />
-                ) : (
-                  ''
-                )}
+              <Grid.Column width={4}>
+                <Image src={props.image.fields.file.url} rounded />
               </Grid.Column>
-              <Grid.Column width={8}>
+              <Grid.Column width={9}>
                 <PostTitle>{props.title}</PostTitle>
                 <p>{props.description}</p>
                 <p>{props.publishDate}</p>
               </Grid.Column>
-              <Grid.Column width={2}>
-                <p>{props.category.fields.name}</p>
+              <Grid.Column width={1}>
+                <Button icon>category</Button>
               </Grid.Column>
             </Grid>
           </a>
