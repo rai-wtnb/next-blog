@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Segment, Image, Grid } from 'semantic-ui-react';
 import styled from '@emotion/styled';
+import { Category } from '../../services';
 
 // css
 const PostTitle = styled.p`
