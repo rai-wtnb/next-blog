@@ -1,7 +1,7 @@
 import React from 'react';
 import { Loader } from 'semantic-ui-react';
 
-import { BlogApi, BlogPost } from '../services';
+import { BlogApi, BlogPost } from '../api';
 import { Layout } from '../components/layout';
 import { BlogBox } from '../components/blog';
 

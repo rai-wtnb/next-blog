@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Layout } from '../../components/layout';
 import { BlogDetail } from '../../components/blog';
-import { BlogApi, BlogPost } from '../../services';
+import { BlogApi, BlogPost } from '../../api';
 
 type BlogDetailPageProps = {
   post: BlogPost;
@@ -14,7 +14,7 @@ export default class BlogDetailPage extends React.Component<
   static async getInitialProps(ctx) {
     const { slug } = ctx.query;
     const api = new BlogApi();
-    const post = await api.fetchBlogById(slug);
+    const post = await api.fetchBlogDetail(slug);
     return { post };
   }
 
