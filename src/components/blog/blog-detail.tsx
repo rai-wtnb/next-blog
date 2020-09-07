@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Image } from 'semantic-ui-react';
 
-import { BlogPost } from '../../services';
+import { BlogPost } from '../../api';
 import { H1 } from '../../styles/globalStyle';
 
 type BlogDetailProps = {

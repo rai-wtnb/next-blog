@@ -78,7 +78,7 @@ export class BlogApi {
       });
   }
 
-  async fetchBlogById(slug: string): Promise<BlogPost> {
+  async fetchBlogDetail(slug: string): Promise<BlogPost> {
     return await this.client
       .getEntries({
         content_type: 'blogPost',

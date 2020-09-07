@@ -5,7 +5,8 @@ import { Grid, Segment, Menu } from 'semantic-ui-react';
 import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
-import { BlogApi, Category } from '../../services';
+import { BlogApi, Category } from '../../api';
+import { useCategoryMenuState } from '../../ducks/category-menu/selector';
 
 // css
 const GridCategory = styled.div`
@@ -26,13 +27,17 @@ const PcMenu = css({
 const ToggleMenu = css({
   display: 'none',
   '@media (max-width: 835px)': {
-    float: 'right',
     display: 'inline-block',
+    position: 'absolute',
+    top: '12%',
+    right: '5%',
+    zIndex: '10',
   },
 });
 //css
 
 const CategorySelect: FC = () => {
+  // TODO -using redux toolkit-
   const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
     const api = new BlogApi();
@@ -42,6 +47,10 @@ const CategorySelect: FC = () => {
     };
     getCategories();
   }, []);
+  //
+
+  const categoryMenuState = useCategoryMenuState().categoryMenu;
+
   return (
     <GridCategory>
       <span css={PcMenu}>
@@ -63,22 +72,26 @@ const CategorySelect: FC = () => {
         </Grid>
       </span>
       {/* max-width:835px */}
-      <span css={ToggleMenu}>
-        <Menu vertical>
-          {categories.map((category) => {
-            return (
-              <Menu.Item key={category.slug} css={categoryStyle}>
-                <Link
-                  href={'/category/[slug]'}
-                  as={`/category/${category.slug}`}
-                >
-                  <a>{category.name}</a>
-                </Link>
-              </Menu.Item>
-            );
-          })}
-        </Menu>
-      </span>
+      {categoryMenuState.isDisplayMenu ? (
+        <span css={ToggleMenu}>
+          <Menu vertical>
+            {categories.map((category) => {
+              return (
+                <Menu.Item key={category.slug} css={categoryStyle}>
+                  <Link
+                    href={'/category/[slug]'}
+                    as={`/category/${category.slug}`}
+                  >
+                    <a>{category.name}</a>
+                  </Link>
+                </Menu.Item>
+              );
+            })}
+          </Menu>
+        </span>
+      ) : (
+        ''
+      )}
     </GridCategory>
   );
 };

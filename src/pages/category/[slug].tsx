@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Layout } from '../../components/layout';
-import { BlogApi, BlogPost } from '../../services';
+import { BlogApi, BlogPost } from '../../api';
 import { BlogBox } from '../../components/blog';
 import { H1 } from '../../styles/globalStyle';
 

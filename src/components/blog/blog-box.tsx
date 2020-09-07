@@ -38,16 +38,11 @@ export const BlogBox = (props: BlogBoxProps) => {
           <a>
             <Grid stackable>
               <Grid.Column width={5}>
-                {/* TODO -modify- */}
-                {props.image ? (
-                  <Image
-                    src={props.image.fields.file.url}
-                    alt={props.image.fields.title}
-                    rounded
-                  />
-                ) : (
-                  ''
-                )}
+                <Image
+                  src={props.image.fields.file.url}
+                  alt={props.image.fields.title}
+                  rounded
+                />
               </Grid.Column>
               <Grid.Column width={11}>
                 <PostTitle>{props.title}</PostTitle>
