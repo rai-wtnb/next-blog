@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader } from 'semantic-ui-react';
+import { NextPage, GetStaticProps } from 'next';
 
 import { BlogApi, BlogPost } from '../api';
 import { Layout } from '../components/layout';
@@ -9,14 +9,10 @@ type BlogPageProps = {
   entries: Array<BlogPost>;
 };
 
-class BlogPage extends React.Component<BlogPageProps> {
-  static async getInitialProps() {
-    const api = new BlogApi();
-    const entries = await api.fetchBlogEntries();
-    return { entries };
-  }
+export const BlogPage: NextPage<BlogPageProps> = (props: BlogPageProps) => {
+  const { entries } = props;
 
-  renderBlogList = (entries) =>
+  const renderBlogList = (entries) =>
     entries.map((entry, i) => {
       return (
         <BlogBox
@@ -33,15 +29,17 @@ class BlogPage extends React.Component<BlogPageProps> {
       );
     });
 
-  render() {
-    const { entries } = this.props;
-    return (
-      <Layout>
-        {entries.length > 0 && this.renderBlogList(entries)}
-        {entries.length == 0 && <Loader />}
-      </Layout>
-    );
-  }
-}
+  return <Layout>{renderBlogList(entries)}</Layout>;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const api = new BlogApi();
+  const entries = await api.fetchBlogEntries();
+  return {
+    props: {
+      entries,
+    },
+  };
+};
 
 export default BlogPage;

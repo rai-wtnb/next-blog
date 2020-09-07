@@ -1,12 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 import { Grid, Segment, Menu } from 'semantic-ui-react';
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
-import { BlogApi, Category } from '../../api';
-import { useCategoryMenuState } from '../../ducks/category-menu/selector';
+import { useAppDispatch } from '../../ducks/dispatch';
+import { changeIsDisplayMenu } from '../../ducks/category-menu/slice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../ducks/rootReducer';
 
 // css
 const GridCategory = styled.div`
@@ -16,79 +18,85 @@ const categoryStyle = css({
   textAlign: 'center',
   cursor: 'pointer',
   '&:hover': {
-    opacity: '0.5',
+    opacity: '0.6',
   },
 });
-const PcMenu = css({
-  '@media (max-width: 835px)': {
-    display: 'none',
-  },
-});
-const ToggleMenu = css({
-  display: 'none',
-  '@media (max-width: 835px)': {
-    display: 'inline-block',
-    position: 'absolute',
-    top: '12%',
-    right: '5%',
-    zIndex: '10',
-  },
-});
+const PcMenu = styled.span`
+  @media (max-width: 835px) {
+    display: none;
+  } ;
+`;
+const ToggleMenu = styled.span`
+  display: none;
+  @media (max-width: 835px) {
+    display: block;
+    position: absolute;
+    top: 62px;
+    right: 5%;
+    z-index: 10;
+  } ;
+`;
+const MenuTop = styled.p`
+  color: #707a7b;
+  text-align: center;
+  background-color: #red;
+`;
 //css
 
 const CategorySelect: FC = () => {
-  // TODO -using redux toolkit-
-  const [categories, setCategories] = useState<Category[]>([]);
-  useEffect(() => {
-    const api = new BlogApi();
-    const getCategories = async () => {
-      const categories = await api.fetchCategories();
-      setCategories(categories);
-    };
-    getCategories();
-  }, []);
-  //
+  const dispatch = useAppDispatch();
+  const onClickToggle = () => {
+    dispatch(changeIsDisplayMenu());
+  };
+  const isDisplayMenu = useSelector(
+    (state: RootState) => state.categoryMenu.isDisplayMenu
+  );
+  const categories = [
+    { name: 'エンジニア', slug: 'engineer' },
+    { name: 'キャリア', slug: 'career' },
+    { name: '買ってよかったもの', slug: 'mono' },
+    { name: 'おすすめの本', slug: 'book' },
+  ];
 
-  const categoryMenuState = useCategoryMenuState().categoryMenu;
-
+  // TODO -DRY-
   return (
     <GridCategory>
-      <span css={PcMenu}>
+      <PcMenu>
         <Grid columns='equal' stackable>
-          {categories.map((category) => {
-            return (
-              <Grid.Column key={category.slug}>
+          {categories.map((category) => (
+            <Grid.Column key={category.slug}>
+              <Link href={'/category/[slug]'} as={`/category/${category.slug}`}>
+                <Segment css={categoryStyle}>
+                  <a>{category.name}</a>
+                </Segment>
+              </Link>
+            </Grid.Column>
+          ))}
+        </Grid>
+      </PcMenu>
+
+      {isDisplayMenu ? (
+        <ToggleMenu>
+          <Menu vertical>
+            <Menu.Item>
+              <MenuTop>Category.</MenuTop>
+            </Menu.Item>
+            {categories.map((category) => (
+              <Menu.Item
+                css={categoryStyle}
+                onClick={onClickToggle}
+                key={category.slug}
+              >
                 <Link
                   href={'/category/[slug]'}
                   as={`/category/${category.slug}`}
                 >
-                  <Segment css={categoryStyle}>
-                    <a>{category.name}</a>
-                  </Segment>
+                  <a>{category.name}</a>
                 </Link>
-              </Grid.Column>
-            );
-          })}
-        </Grid>
-      </span>
-      {/* max-width:835px */}
-      {categoryMenuState.isDisplayMenu ? (
-        <span css={ToggleMenu}>
-          <Menu vertical>
-            {categories.map((category) => {
-              return (
-                <Menu.Item key={category.slug} css={categoryStyle}>
-                  <Link
-                    href={'/category/[slug]'}
-                    as={`/category/${category.slug}`}
-                  >
-                    <a>{category.name}</a>
-                  </Link>
-                </Menu.Item>
-              );
-            })}
+              </Menu.Item>
+            ))}
           </Menu>
-        </span>
+        </ToggleMenu>
       ) : (
         ''
       )}
