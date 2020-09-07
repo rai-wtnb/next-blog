@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 import { Button, Icon } from 'semantic-ui-react';
 import styled from '@emotion/styled';
@@ -7,6 +7,8 @@ import { css, jsx } from '@emotion/core';
 
 import { changeIsDisplayMenu } from '../../ducks/category-menu/slice';
 import { useAppDispatch } from '../../ducks/dispatch';
+import { RootState } from '../../ducks/rootReducer';
+import { useSelector } from 'react-redux';
 
 // css
 const GridHeader = styled.header`
@@ -28,11 +30,14 @@ const MenuStyle = css({
 });
 // css
 
-export const Header = () => {
+export const Header: FC = () => {
   const dispatch = useAppDispatch();
   const onClickToggle = () => {
     dispatch(changeIsDisplayMenu());
   };
+  const isDisplayMenu = useSelector(
+    (state: RootState) => state.categoryMenu.isDisplayMenu
+  );
 
   return (
     <GridHeader>
@@ -43,7 +48,7 @@ export const Header = () => {
       </Muku>
       <span css={MenuStyle} onClick={onClickToggle}>
         <Button icon floated='right'>
-          <Icon name='content' />
+          {isDisplayMenu ? <Icon name='close' /> : <Icon name='content' />}
         </Button>
       </span>
       <Link href='/search'>
