@@ -9,15 +9,11 @@ import { css, jsx } from '@emotion/core';
 import { H1 } from '../../styles/globalStyle';
 
 type CategoryPageProps = {
-  slug: string;
-  blogPosts: BlogPost[];
+  categorised: BlogPost[];
 };
 
 const CategoryPage: NextPage<CategoryPageProps> = (props) => {
-  const { slug, blogPosts } = props;
-  const categorised = blogPosts.filter(
-    (post) => post.category.fields.slug === slug
-  );
+  const { categorised } = props;
   const renderBlogList = (entries) =>
     entries.map((entry, i) => {
       return (
@@ -62,10 +58,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params.slug;
   const api = new BlogApi();
   const blogPosts = await api.fetchBlogEntries();
+  const categorised = blogPosts.filter(
+    (post) => post.category.fields.slug === slug
+  );
   return {
     props: {
-      slug,
-      blogPosts,
+      categorised,
     },
   };
 };
