@@ -1,10 +1,12 @@
 import React from 'react';
 import { Layout } from '../../components/layout';
-import { BlogApi, BlogPost, Category } from '../../api';
+import { BlogApi, BlogPost } from '../../api';
 import { BlogBox } from '../../components/blog';
-import { H1 } from '../../styles/globalStyle';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import { Segment } from 'semantic-ui-react';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
+import { H1 } from '../../styles/globalStyle';
 
 type CategoryPageProps = {
   slug: string;
@@ -13,7 +15,6 @@ type CategoryPageProps = {
 
 const CategoryPage: NextPage<CategoryPageProps> = (props) => {
   const { slug, blogPosts } = props;
-  console.log(slug);
   const categorised = blogPosts.filter(
     (post) => post.category.fields.slug === slug
   );

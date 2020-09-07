@@ -18,7 +18,7 @@ const categoryStyle = css({
   textAlign: 'center',
   cursor: 'pointer',
   '&:hover': {
-    opacity: '0.5',
+    opacity: '0.6',
   },
 });
 const PcMenu = styled.span`
@@ -26,16 +26,21 @@ const PcMenu = styled.span`
     display: none;
   } ;
 `;
-const ToggleMenu = css({
-  display: 'none',
-  '@media (max-width: 835px)': {
-    display: 'block',
-    position: 'absolute',
-    top: '62px',
-    right: '5%',
-    zIndex: '10',
-  },
-});
+const ToggleMenu = styled.span`
+  display: none;
+  @media (max-width: 835px) {
+    display: block;
+    position: absolute;
+    top: 62px;
+    right: 5%;
+    z-index: 10;
+  } ;
+`;
+const MenuTop = styled.p`
+  color: #707a7b;
+  text-align: center;
+  background-color: #red;
+`;
 //css
 
 const CategorySelect: FC = () => {
@@ -71,8 +76,11 @@ const CategorySelect: FC = () => {
       </PcMenu>
 
       {isDisplayMenu ? (
-        <span css={ToggleMenu}>
+        <ToggleMenu>
           <Menu vertical>
+            <Menu.Item>
+              <MenuTop>Category.</MenuTop>
+            </Menu.Item>
             {categories.map((category) => (
               <Menu.Item
                 css={categoryStyle}
@@ -88,7 +96,7 @@ const CategorySelect: FC = () => {
               </Menu.Item>
             ))}
           </Menu>
-        </span>
+        </ToggleMenu>
       ) : (
         ''
       )}

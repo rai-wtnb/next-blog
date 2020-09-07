@@ -4,9 +4,6 @@ import { NextPage, GetStaticProps } from 'next';
 import { BlogApi, BlogPost } from '../api';
 import { Layout } from '../components/layout';
 import { BlogBox } from '../components/blog';
-import { RootState } from '../ducks/rootReducer';
-import { useSelector } from 'react-redux';
-import { Loader } from 'semantic-ui-react';
 
 type BlogPageProps = {
   entries: Array<BlogPost>;
