@@ -14,7 +14,9 @@ import { useSelector } from 'react-redux';
 const GridHeader = styled.header`
   grid-area: header;
 `;
+
 const Muku = styled.div`
+  color: #115c79;
   height: 40px;
   font-size: 25px;
   float: left;

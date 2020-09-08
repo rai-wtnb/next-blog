@@ -1,4 +1,5 @@
 import React from 'react';
+import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 
 import { Layout } from '../../components/layout';
 import { BlogDetail } from '../../components/blog';
@@ -8,24 +9,34 @@ type BlogDetailPageProps = {
   post: BlogPost;
 };
 
-export default class BlogDetailPage extends React.Component<
-  BlogDetailPageProps
-> {
-  static async getInitialProps(ctx) {
-    const { slug } = ctx.query;
-    const api = new BlogApi();
-    const post = await api.fetchBlogDetail(slug);
-    return { post };
-  }
+const BlogDetailPage: NextPage<BlogDetailPageProps> = (props) => {
+  const { post } = props;
+  return (
+    <Layout>
+      <div>
+        <div>{post && <BlogDetail post={post} />}</div>
+      </div>
+    </Layout>
+  );
+};
 
-  render() {
-    const { post } = this.props;
-    return (
-      <Layout>
-        <div>
-          <div>{post && <BlogDetail post={post} />}</div>
-        </div>
-      </Layout>
-    );
-  }
-}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const api = new BlogApi();
+  const blogPosts = await api.fetchBlogEntries();
+  const slugs = blogPosts.map((post) => post.slug);
+  const paths = slugs.map((slug) => `/blog/${slug}`);
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const slug = params.slug;
+  const api = new BlogApi();
+  const post = await api.fetchBlogDetail(slug as string);
+  return {
+    props: {
+      post,
+    },
+  };
+};
+
+export default BlogDetailPage;
