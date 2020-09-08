@@ -9,12 +9,14 @@ import '../styles/globals.css';
 
 const DEFAULT_SEO = {
   title: 'muku.',
-  description: "muku's blog",
+  description:
+    'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
   openGraph: {
     type: 'website',
     locale: 'ja',
     title: 'muku.',
-    description: "muku's blog",
+    description:
+      'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
     site_name: 'muku.',
   },
 };

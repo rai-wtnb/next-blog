@@ -5,6 +5,7 @@ const GridFooter = styled.footer`
   grid-area: footer;
 `;
 const FooterRight = styled.div`
+  color: #115c79;
   font-size: 12.8px;
   float: right;
 `;

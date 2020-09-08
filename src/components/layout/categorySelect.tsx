@@ -37,7 +37,7 @@ const ToggleMenu = styled.span`
   } ;
 `;
 const MenuTop = styled.p`
-  color: #707a7b;
+  color: #115c79;
   text-align: center;
   background-color: #red;
 `;
