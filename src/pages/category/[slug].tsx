@@ -4,8 +4,6 @@ import { BlogApi, BlogPost } from '../../api';
 import { BlogBox } from '../../components/blog';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import { Segment } from 'semantic-ui-react';
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core';
 import { H1 } from '../../styles/globalStyle';
 
 type CategoryPageProps = {
