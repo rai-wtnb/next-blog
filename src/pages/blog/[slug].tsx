@@ -13,9 +13,7 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = (props) => {
   const { post } = props;
   return (
     <Layout>
-      <div>
-        <div>{post && <BlogDetail post={post} />}</div>
-      </div>
+      <div>{post && <BlogDetail post={post} />}</div>
     </Layout>
   );
 };

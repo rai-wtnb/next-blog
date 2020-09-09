@@ -58,7 +58,6 @@ const CategorySelect: FC = () => {
     { name: 'おすすめの本', slug: 'book' },
   ];
 
-  // TODO -DRY-
   return (
     <GridCategory>
       <PcMenu>
