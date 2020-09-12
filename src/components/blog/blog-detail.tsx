@@ -29,8 +29,25 @@ const OnImage = styled.div`
   }
 `;
 const BodyStyle = css({
+  p: {
+    whiteSpace: 'pre-wrap',
+    lineHeight: '1.8',
+    padding: '16px 0',
+  },
+  paddingTop: '40px',
+  a: {
+    color: '#8cc1b5',
+    textDecoration: 'underline #8cc1b5',
+  },
   h2: {
     fontSize: '1.25em',
+  },
+  strong: {
+    color: '#8cc1b5',
+  },
+  img: {
+    width: '80%',
+    borderRadius: '5px',
   },
 });
 // css
