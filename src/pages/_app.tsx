@@ -1,11 +1,13 @@
-import React from 'react';
-import App from 'next/app';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { DefaultSeo } from 'next-seo';
+import Router from 'next/router';
 import 'semantic-ui-css/semantic.min.css';
 
+import * as gtag from '../lib/gtag';
 import store from '../ducks/store';
 import '../styles/globals.css';
+import { NextPage } from 'next';
 
 const DEFAULT_SEO = {
   title: 'muku.',
@@ -21,20 +23,28 @@ const DEFAULT_SEO = {
   },
 };
 
-export default class CustomApp extends App {
-  componentDidCatch(error: any, errorInfo: any) {
-    console.log(error);
-    super.componentDidCatch(error, errorInfo);
-  }
+const CustomApp = ({ Component, pageProps }) => {
+  useEffect(() => {
+    if (!gtag.existsGaId) {
+      return;
+    }
 
-  render() {
-    const { Component, pageProps } = this.props;
+    const handleRouteChange = (path) => {
+      gtag.pageview(path);
+    };
 
-    return (
-      <Provider store={store}>
-        <DefaultSeo {...DEFAULT_SEO} />
-        <Component {...pageProps} />
-      </Provider>
-    );
-  }
-}
+    Router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <DefaultSeo {...DEFAULT_SEO} />
+      <Component {...pageProps} />
+    </Provider>
+  );
+};
+
+export default CustomApp;
