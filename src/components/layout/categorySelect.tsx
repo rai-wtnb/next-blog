@@ -81,18 +81,15 @@ const CategorySelect: FC = () => {
               <MenuTop>Category.</MenuTop>
             </Menu.Item>
             {categories.map((category) => (
-              <Menu.Item
-                css={categoryStyle}
-                onClick={onClickToggle}
-                key={category.slug}
-              >
-                <Link
-                  href={'/category/[slug]'}
-                  as={`/category/${category.slug}`}
+              <Link href={'/category/[slug]'} as={`/category/${category.slug}`}>
+                <Menu.Item
+                  css={categoryStyle}
+                  onClick={onClickToggle}
+                  key={category.slug}
                 >
                   <a>{category.name}</a>
-                </Link>
-              </Menu.Item>
+                </Menu.Item>
+              </Link>
             ))}
           </Menu>
         </ToggleMenu>
