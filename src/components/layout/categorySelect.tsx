@@ -60,19 +60,26 @@ const CategorySelect: FC = () => {
 
   return (
     <GridCategory>
-      <PcMenu>
-        <Grid columns='equal' stackable>
-          {categories.map((category) => (
-            <Grid.Column key={category.slug}>
-              <Link href={'/category/[slug]'} as={`/category/${category.slug}`}>
-                <Segment css={categoryStyle}>
-                  <a>{category.name}</a>
-                </Segment>
-              </Link>
-            </Grid.Column>
-          ))}
-        </Grid>
-      </PcMenu>
+      {isDisplayMenu ? (
+        <PcMenu>
+          <Grid columns='equal' stackable>
+            {categories.map((category) => (
+              <Grid.Column key={category.slug}>
+                <Link
+                  href={'/category/[slug]'}
+                  as={`/category/${category.slug}`}
+                >
+                  <Segment css={categoryStyle}>
+                    <a>{category.name}</a>
+                  </Segment>
+                </Link>
+              </Grid.Column>
+            ))}
+          </Grid>
+        </PcMenu>
+      ) : (
+        ''
+      )}
 
       {isDisplayMenu ? (
         <ToggleMenu>
