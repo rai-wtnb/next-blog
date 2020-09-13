@@ -5,13 +5,25 @@ import { BlogBox } from '../../components/blog';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import { Segment } from 'semantic-ui-react';
 import { H1 } from '../../styles/globalStyle';
+import styled from '@emotion/styled';
+
+//css
+const CategoryWrapper = styled.div`
+  text-align: center;
+  margin-bottom: 10px;
+`;
+const H2 = styled.h2`
+  display: inline-box;
+`;
+//css
 
 type CategoryPageProps = {
   categorised: BlogPost[];
+  slug: string;
 };
 
 const CategoryPage: NextPage<CategoryPageProps> = (props) => {
-  const { categorised } = props;
+  const { categorised, slug } = props;
   const renderBlogList = (entries) =>
     entries.map((entry, i) => {
       return (
@@ -32,6 +44,9 @@ const CategoryPage: NextPage<CategoryPageProps> = (props) => {
   return (
     <>
       <Layout>
+        <CategoryWrapper>
+          <H2>{slug}.</H2>
+        </CategoryWrapper>
         {categorised && renderBlogList(categorised)}
         <Segment>
           <H1>comming soon...</H1>
@@ -62,6 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       categorised,
+      slug,
     },
   };
 };

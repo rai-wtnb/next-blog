@@ -13,6 +13,8 @@ import { useSelector } from 'react-redux';
 // css
 const GridHeader = styled.header`
   grid-area: header;
+  height: 70px;
+  padding-top: 20px;
 `;
 
 const Muku = styled.div`
@@ -23,13 +25,6 @@ const Muku = styled.div`
   display flex;
   align-items: flex-end;
 `;
-const MenuStyle = css({
-  display: 'none',
-  '@media(max-width: 835px)': {
-    display: 'inline-block',
-    float: 'right',
-  },
-});
 // css
 
 export const Header: FC = () => {
@@ -48,7 +43,7 @@ export const Header: FC = () => {
           <a>muku.</a>
         </Link>
       </Muku>
-      <span css={MenuStyle} onClick={onClickToggle}>
+      <span onClick={onClickToggle}>
         <Button icon floated='right'>
           {isDisplayMenu ? <Icon name='close' /> : <Icon name='content' />}
         </Button>
@@ -60,24 +55,6 @@ export const Header: FC = () => {
           </Button>
         </a>
       </Link>
-      <a
-        href='https://github.com/rai-wtnb'
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        <Button icon floated='right'>
-          <Icon name='github' />
-        </Button>
-      </a>
-      <a
-        href='https://twitter.com/mmuu_kkuu'
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        <Button icon floated='right'>
-          <Icon name='twitter' />
-        </Button>
-      </a>
     </GridHeader>
   );
 };

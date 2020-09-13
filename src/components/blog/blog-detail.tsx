@@ -36,14 +36,15 @@ const BodyStyle = css({
   },
   paddingTop: '40px',
   a: {
-    color: '#8cc1b5',
-    textDecoration: 'underline #8cc1b5',
+    color: '#ef8463',
+    textDecoration: 'underline #ef8463',
   },
   h2: {
     fontSize: '1.25em',
   },
   strong: {
-    color: '#8cc1b5',
+    color: '#ef8463',
+    fontWeight: 'normal',
   },
   img: {
     width: '80%',

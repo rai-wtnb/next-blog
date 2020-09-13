@@ -8,24 +8,24 @@ import CategorySelect from './categorySelect';
 const Entire = styled.div`
   display: grid;
   grid-template:
-    '...... ......   ......' 20px
     '...... header   ......'
-    '...... ......   ......' 40px
+    '...... ......   ......' 10px
     '...... category ......'
-    '...... ......   ......' 40px
+    '...... ......   ......' 20px
     '...... center   ......' 1fr
-    '...... footer   ......'
+    '...... ......   ......' 40px
+    'footer footer   footer'
     / 20% 1fr 20%;
   @media (max-width: 835px) {
     display: grid;
     grid-template:
-      '...... ......   ......' 20px
       '...... header   ......'
       '...... ......   ......' 40px
       '...... category ......'
       '...... ......   ......' 40px
       '...... center   ......' 1fr
-      '...... footer   ......'
+      '...... ......   ......' 40px
+      'footer footer   footer'
       / 5% 1fr 5%;
   }
 `;
