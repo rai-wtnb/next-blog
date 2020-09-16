@@ -28,6 +28,7 @@ class MyDocument extends Document {
               />
             </>
           ) : null}
+          <script data-ad-client="ca-pub-3259446121033659" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
           <meta
             name='keywords'
             content='muku.,muku,むく,プログラミング,エンジニア,キャリア,本,読書,物欲,副業'
