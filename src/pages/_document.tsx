@@ -32,6 +32,7 @@ class MyDocument extends Document {
             name='keywords'
             content='muku.,muku,むく,プログラミング,エンジニア,キャリア,本,読書,物欲,副業'
           />
+          <meta name="twitter:card" content="Summary with Large Image" />
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap'
