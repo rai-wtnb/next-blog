@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { DefaultSeo } from 'next-seo';
-import Head from 'next/head';
 import Router from 'next/router';
 import 'semantic-ui-css/semantic.min.css';
 
