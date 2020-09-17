@@ -31,9 +31,11 @@ class MyDocument extends Document {
           <script data-ad-client="ca-pub-3259446121033659" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
           <meta
             name='keywords'
-            content='muku.,muku,むく,プログラミング,エンジニア,キャリア,本,読書,物欲,副業'
+            content='muku.,muku,むく,プログラミング,エンジニア,キャリア,生き方,暮らし,本,読書,物欲,副業'
           />
-          <meta name="twitter:card" content="Summary with Large Image" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta property="og:image" content="https://mukunoblog.com/public/share.png" />
+          <link rel="icon" type="image/x-icon" href="/favicon.png" />
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap'
