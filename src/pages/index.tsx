@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { NextPage, GetStaticProps } from 'next';
 
 import { BlogApi, BlogPost } from '../api';
