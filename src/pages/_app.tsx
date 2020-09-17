@@ -21,6 +21,11 @@ const DEFAULT_SEO = {
       'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
     site_name: 'muku.',
   },
+  twitter: {
+    handle: '@mmuu_kkuu',
+    site: 'mukunoblog',
+    cardType: 'summary_large_image',
+  }
 };
 
 const CustomApp = ({ Component, pageProps }) => {
