@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { DefaultSeo } from 'next-seo';
+import Head from 'next/head';
 import Router from 'next/router';
 import 'semantic-ui-css/semantic.min.css';
 
 import * as gtag from '../lib/gtag';
 import store from '../ducks/store';
 import '../styles/globals.css';
-import { Head } from 'next/document';
 
 const DEFAULT_SEO = {
   title: 'muku.',
