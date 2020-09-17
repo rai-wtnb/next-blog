@@ -34,6 +34,7 @@ class MyDocument extends Document {
             content='muku.,muku,むく,プログラミング,エンジニア,キャリア,生き方,暮らし,本,読書,物欲,副業'
           />
           <meta property="og:image" content="https://mukunoblog.com/public/share.png" />
+
           <link rel="icon" type="image/x-icon" href="/favicon.png" />
           <link
             rel='stylesheet'
