@@ -1,4 +1,6 @@
 import React from 'react';
+import Head from 'next/head';
+
 import { Layout } from '../../components/layout';
 import { BlogApi, BlogPost } from '../../api';
 import { BlogBox } from '../../components/blog';
@@ -43,6 +45,9 @@ const CategoryPage: NextPage<CategoryPageProps> = (props) => {
 
   return (
     <>
+      <Head>
+        <meta property="og:image" content="https://mukunoblog.com/share.png" />
+      </Head>
       <Layout>
         <CategoryWrapper>
           <H2>{slug}.</H2>

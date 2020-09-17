@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { DefaultSeo } from 'next-seo';
-import Head from 'next/head';
 import Router from 'next/router';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -20,13 +19,6 @@ const DEFAULT_SEO = {
     description:
       'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
     site_name: 'muku.',
-    images: [
-      {
-        url: '/share.png',
-        width: 800,
-        height: 600,
-        alt: 'Og Image Alt',
-      },]
   },
   twitter: {
     handle: '@mmuu_kkuu',
@@ -53,9 +45,6 @@ const CustomApp = ({ Component, pageProps }) => {
 
   return (
     <Provider store={store}>
-      <Head>
-        <meta property="og:image" content="https://mukunoblog.com/share.png" />
-      </Head>
       <DefaultSeo {...DEFAULT_SEO} />
       <Component {...pageProps} />
     </Provider>
