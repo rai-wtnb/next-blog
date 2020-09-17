@@ -7,7 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 import * as gtag from '../lib/gtag';
 import store from '../ducks/store';
 import '../styles/globals.css';
-import { NextPage } from 'next';
+import { Head } from 'next/document';
 
 const DEFAULT_SEO = {
   title: 'muku.',
@@ -20,6 +20,13 @@ const DEFAULT_SEO = {
     description:
       'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
     site_name: 'muku.',
+    images: [
+      {
+        url: '/share.png',
+        width: 800,
+        height: 600,
+        alt: 'Og Image Alt',
+      },]
   },
   twitter: {
     handle: '@mmuu_kkuu',
@@ -46,6 +53,9 @@ const CustomApp = ({ Component, pageProps }) => {
 
   return (
     <Provider store={store}>
+      <Head>
+        <meta property="og:image" content="https://mukunoblog.com/share.png" />
+      </Head>
       <DefaultSeo {...DEFAULT_SEO} />
       <Component {...pageProps} />
     </Provider>
