@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { NextPage, GetStaticProps } from 'next';
 
 import { BlogApi, BlogPost } from '../api';
@@ -31,12 +30,7 @@ export const BlogPage: NextPage<BlogPageProps> = (props: BlogPageProps) => {
     });
 
   return (
-    <>
-      <Head>
-        <meta property="og:image" content="https://mukunoblog.com/share.png" />
-      </Head>
-      <Layout>{renderBlogList(entries)}</Layout>
-    </>
+    <Layout>{renderBlogList(entries)}</Layout>
   )
 };
 
