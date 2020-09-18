@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
-import Head from 'next/head';
 
 import { Layout } from '../../components/layout';
 import { BlogDetail } from '../../components/blog';
@@ -13,14 +12,9 @@ type BlogDetailPageProps = {
 const BlogDetailPage: NextPage<BlogDetailPageProps> = (props) => {
   const { post } = props;
   return (
-    <>
-      <Head>
-        <meta property="og:image" content={post.image.fields.file.url} />
-      </Head>
-      <Layout>
-        <div>{post && <BlogDetail post={post} />}</div>
-      </Layout>
-    </>
+    <Layout>
+      <div>{post && <BlogDetail post={post} />}</div>
+    </Layout>
   );
 };
 
