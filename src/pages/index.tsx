@@ -31,12 +31,7 @@ export const BlogPage: NextPage<BlogPageProps> = (props: BlogPageProps) => {
     });
 
   return (
-    <>
-      <Head>
-        <meta property="og:image" content="https://mukunoblog.com/share.png" />
-      </Head>
-      <Layout>{renderBlogList(entries)}</Layout>
-    </>
+    <Layout>{renderBlogList(entries)}</Layout>
   )
 };
 

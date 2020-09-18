@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import styled from '@emotion/styled';
 
 import { Layout } from '../../components/layout';
 import { BlogApi, BlogPost } from '../../api';
@@ -7,7 +7,6 @@ import { BlogBox } from '../../components/blog';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import { Segment } from 'semantic-ui-react';
 import { H1 } from '../../styles/globalStyle';
-import styled from '@emotion/styled';
 
 //css
 const CategoryWrapper = styled.div`
@@ -44,21 +43,16 @@ const CategoryPage: NextPage<CategoryPageProps> = (props) => {
     });
 
   return (
-    <>
-      <Head>
-        <meta property="og:image" content="https://mukunoblog.com/share.png" />
-      </Head>
-      <Layout>
-        <CategoryWrapper>
-          <H2>{slug}.</H2>
-        </CategoryWrapper>
-        {categorised && renderBlogList(categorised)}
-        <Segment>
-          <H1>comming soon...</H1>
-          <p>記事作成中です！</p>
-        </Segment>
-      </Layout>
-    </>
+    <Layout>
+      <CategoryWrapper>
+        <H2>{slug}.</H2>
+      </CategoryWrapper>
+      {categorised && renderBlogList(categorised)}
+      <Segment>
+        <H1>comming soon...</H1>
+        <p>記事作成中です！</p>
+      </Segment>
+    </Layout>
   );
 };
 

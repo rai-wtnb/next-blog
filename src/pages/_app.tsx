@@ -10,27 +10,27 @@ import store from '../ducks/store';
 import '../styles/globals.css';
 
 const DEFAULT_SEO = {
-  title: 'muku.',
+  title: 'mukunoblog',
   description:
-    'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
+    'muku.のブログです。エンジニア関連の学び・生き方・買ってよかったもの・読んでよかった本の紹介をしていきます。',
   openGraph: {
     type: 'website',
     locale: 'ja',
-    title: 'muku.',
+    title: 'mukunoblog',
     description:
-      'muku.のブログです。エンジニア関連の学び、キャリア・生き方の考え方、買ってよかったもの・読んでよかった本の紹介をしていきます。',
-    site_name: 'muku.',
+      'muku.のブログです。エンジニア関連の学び・生き方・買ってよかったもの・読んでよかった本の紹介をしていきます。',
+    site_name: 'mukunoblog',
     images: [
       {
-        url: '/share.png',
+        url: 'https://mukunoblog.com/share.png',
         width: 800,
         height: 600,
-        alt: 'Og Image Alt',
-      },]
+        alt: 'muku.のブログ',
+      },
+    ]
   },
   twitter: {
     handle: '@mmuu_kkuu',
-    site: 'mukunoblog',
     cardType: 'summary_large_image',
   }
 };
