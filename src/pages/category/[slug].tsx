@@ -48,10 +48,6 @@ const CategoryPage: NextPage<CategoryPageProps> = (props) => {
         <H2>{slug}.</H2>
       </CategoryWrapper>
       {categorised && renderBlogList(categorised)}
-      <Segment>
-        <H1>comming soon...</H1>
-        <p>記事作成中です！</p>
-      </Segment>
     </Layout>
   );
 };
