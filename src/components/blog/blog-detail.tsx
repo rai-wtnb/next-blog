@@ -6,7 +6,6 @@ import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { BlogPost } from '../../api';
-import { H1 } from '../../styles/globalStyle';
 
 // css
 const ImageWrapper = styled.div`
@@ -26,6 +25,11 @@ const OnImage = styled.div`
   transform: translate(-50%, -50%);
   h1 {
     border-bottom: solid 1px #ffffff;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 1.563rem;
+  @media (max-width: 835px) {
+    font-size: 1rem;
+  }
   }
 `;
 const BodyStyle = css({
@@ -71,7 +75,7 @@ export const BlogDetail = (props: BlogDetailProps) => {
             rounded
           />
           <OnImage>
-            <H1>{post.title}</H1>
+            <h1>{post.title}</h1>
             <p>{post.publishDate}</p>
           </OnImage>
         </ImageWrapper>
