@@ -45,6 +45,9 @@ const BodyStyle = css({
   },
   h2: {
     fontSize: '1.25em',
+    padding: '10px 5px',
+    borderRadius: '5px',
+    backgroundColor: '#e8e6e2',
   },
   strong: {
     color: '#ef8463',
