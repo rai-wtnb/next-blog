@@ -12,6 +12,7 @@ import { RootState } from '../../ducks/rootReducer';
 
 // css
 const GridCategory = styled.div`
+  content-visibility: auto;
   grid-area: category;
 `;
 const categoryStyle = css({
@@ -78,8 +79,8 @@ const CategorySelect: FC = () => {
           </Grid>
         </PcMenu>
       ) : (
-        ''
-      )}
+          ''
+        )}
 
       {isDisplayMenu ? (
         <ToggleMenu>
@@ -101,8 +102,8 @@ const CategorySelect: FC = () => {
           </Menu>
         </ToggleMenu>
       ) : (
-        ''
-      )}
+          ''
+        )}
     </GridCategory>
   );
 };

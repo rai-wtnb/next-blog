@@ -41,6 +41,7 @@ export const BlogBox = (props: BlogBoxProps) => {
                 <Image
                   src={props.image.fields.file.url}
                   alt={props.image.fields.title}
+                  loading="lazy"
                   rounded
                 />
               </Grid.Column>
