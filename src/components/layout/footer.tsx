@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react';
 
 // css
 const GridFooter = styled.footer`
+  content-visibility: auto;
   padding-top: 40px;
   grid-area: footer;
   background-color: #e8e6e2;
@@ -185,7 +186,7 @@ export const Footer = () => {
       </CategoryWrapper>
       <div>
         <h2>About me.</h2>
-        <ProfileImage src='/profile.png' alt='muku.のプロフィール' />
+        <ProfileImage src='/profile.png' alt='muku.のプロフィール' loading="lazy" />
         <p>muku.</p>
         <p>プロフィール作成中...</p>
         <p>
