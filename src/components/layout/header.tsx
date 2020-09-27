@@ -16,7 +16,6 @@ const GridHeader = styled.header`
   height: 70px;
   padding-top: 20px;
 `;
-
 const Muku = styled.div`
   color: #115c79;
   height: 40px;
@@ -24,6 +23,16 @@ const Muku = styled.div`
   float: left;
   display flex;
   align-items: flex-end;
+`;
+const ProfileImage = styled.img`
+  margin-left: 4px;
+  border-radius: 5px;
+  height: 41px;
+  float: right;
+  width: 45px;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 // css
 
@@ -43,6 +52,11 @@ export const Header: FC = () => {
           <a>muku.</a>
         </Link>
       </Muku>
+      <Link href='/profile'>
+        <a>
+          <ProfileImage src='/profile.png' alt='muku.のプロフィール' loading="lazy" />
+        </a>
+      </Link>
       <span onClick={onClickToggle}>
         <Button icon floated='right'>
           {isDisplayMenu ? <Icon name='close' /> : <Icon name='content' />}

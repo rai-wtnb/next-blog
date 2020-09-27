@@ -1,10 +1,16 @@
 import React from 'react';
-import Head from 'next/head';
 import { NextPage, GetStaticProps } from 'next';
+import styled from '@emotion/styled';
 
 import { BlogApi, BlogPost } from '../api';
 import { Layout } from '../components/layout';
 import { BlogBox } from '../components/blog';
+
+// css
+const H2 = styled.h2`
+  text-align: center;
+`;
+// css
 
 type BlogPageProps = {
   entries: Array<BlogPost>;
@@ -31,7 +37,10 @@ export const BlogPage: NextPage<BlogPageProps> = (props: BlogPageProps) => {
     });
 
   return (
-    <Layout>{renderBlogList(entries)}</Layout>
+    <Layout>
+      <H2>latest.</H2>
+      {renderBlogList(entries)}
+    </Layout>
   )
 };
 
