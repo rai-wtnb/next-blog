@@ -139,11 +139,19 @@ const CategoryImageBook = styled.div`
   }
 `;
 const ProfileImage = styled.img`
+  &:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
   width: 20%;
   @media (max-width: 835px) {
     width: 50%;
   }
 `;
+const MyName = styled.p`
+  font-size: 1.25em;
+  padding-bottom: 20px;
+`
 // css
 
 export const Footer = () => {
@@ -186,9 +194,12 @@ export const Footer = () => {
       </CategoryWrapper>
       <div>
         <h2>About me.</h2>
-        <ProfileImage src='/profile.png' alt='muku.のプロフィール' loading="lazy" />
-        <p>muku.</p>
-        <p>プロフィール作成中...</p>
+        <Link href={'/profile'}>
+          <a>
+            <ProfileImage src='/profile.png' alt='muku.のプロフィール' loading="lazy" />
+          </a>
+        </Link>
+        <MyName>muku.</MyName>
         <p>
           <a
             href='https://twitter.com/mmuu_kkuu'
