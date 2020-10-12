@@ -1,4 +1,3 @@
-import AdSense from 'react-adsense';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { Icon } from 'semantic-ui-react';
@@ -158,13 +157,6 @@ const MyName = styled.p`
 export const Footer = () => {
   return (
     <GridFooter>
-      <AdSense.Google
-        style={{ display: "block" }}
-        format="auto"
-        client='ca-pub-3259446121033659'
-        slot='9195810116'
-        responsive="true"
-      />
       <h2>Category.</h2>
       <CategoryWrapper>
         <Link href={'/category/[slug]'} as={`/category/engineer`}>

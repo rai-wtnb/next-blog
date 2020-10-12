@@ -1,4 +1,5 @@
 import React from 'react';
+import AdSense from 'react-adsense';
 import { NextPage, GetStaticProps } from 'next';
 import styled from '@emotion/styled';
 
@@ -40,6 +41,13 @@ export const BlogPage: NextPage<BlogPageProps> = (props: BlogPageProps) => {
     <Layout>
       <H2>latest.</H2>
       {renderBlogList(entries)}
+      <AdSense.Google
+        style={{ display: "block" }}
+        format="auto"
+        client='ca-pub-3259446121033659'
+        slot='6428872516'
+        responsive="true"
+      />
     </Layout>
   )
 };
