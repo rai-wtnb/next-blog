@@ -1,5 +1,4 @@
 import React from 'react';
-import AdSense from 'react-adsense';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 
 import { Layout } from '../../components/layout';
@@ -15,13 +14,6 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = (props) => {
   return (
     <Layout>
       <div>{post && <BlogDetail post={post} />}</div>
-      <AdSense.Google
-        style={{ display: "block" }}
-        format="auto"
-        client='ca-pub-3259446121033659'
-        slot='9195810116'
-        responsive="true"
-      />
     </Layout>
   );
 };
