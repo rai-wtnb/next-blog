@@ -52,11 +52,6 @@ export const Header: FC = () => {
           <a>muku.</a>
         </Link>
       </Muku>
-      <Link href='/profile'>
-        <a>
-          <ProfileImage src='/profile.png' alt='muku.のプロフィール' loading="lazy" />
-        </a>
-      </Link>
       <span onClick={onClickToggle}>
         <Button icon floated='right'>
           {isDisplayMenu ? <Icon name='close' /> : <Icon name='content' />}
@@ -67,6 +62,11 @@ export const Header: FC = () => {
           <Button icon floated='right'>
             <Icon name='search' />
           </Button>
+        </a>
+      </Link>
+      <Link href='/profile'>
+        <a>
+          <ProfileImage src='/profile.png' alt='muku.のプロフィール' loading="lazy" />
         </a>
       </Link>
     </GridHeader>
